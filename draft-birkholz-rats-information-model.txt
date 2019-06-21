@@ -96,7 +96,7 @@ Table of Contents
       configuration, or operational state,
 
    o  represent the provenance of assertions, including entities that
-      provide assertions on behalf of the attester, and
+      provide assertions on behalf of the attester,
 
    o  compose a type of proof of validity with respect to other
       assertions, and that
@@ -184,13 +184,13 @@ Internet-Draft                    IMARA                        June 2019
 
    Attestation Evidence:  [H, S, O, V]
 
-   A composite IE that must include at least an Authentication-Secret
-   Identifier, an Attester Identity, and at least one Attestation
-   Assertion.  Attestation Evidence is always signed via the
-   Authentication Secret and thereby binds the listed information
-   elements cryptographically.  Attestation Evidence can only be trusted
-   by a verifier if it is associated with a trust anchor the verifier
-   also trusts.
+      A composite IE that must include at least an Authentication-Secret
+      Identifier, an Attester Identity, and at least one Attestation
+      Assertion.  Attestation Evidence is always signed via the
+      Authentication Secret and thereby binds the listed information
+      elements cryptographically.  Attestation Evidence can only be
+      trusted by a verifier if it is associated with a trust anchor the
+      verifier also trusts.
 
    Attester Identifier:  [P, O, V]
 

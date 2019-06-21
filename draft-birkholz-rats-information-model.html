@@ -387,7 +387,7 @@ ul.toc li {
 <ul>
 <li>enable the functionality of remote attestation protocols,</li>
 <li>are able to express assertions about an attester&#8217;s composition, configuration, or operational state,</li>
-<li>represent the provenance of assertions, including entities that provide assertions on behalf of the attester, and</li>
+<li>represent the provenance of assertions, including entities that provide assertions on behalf of the attester,</li>
 <li>compose a type of proof of validity with respect to other assertions, and that</li>
 <li>are either verifiable (via comparison with trusted reference values) or non-verifiable.</li>
 </ul>
@@ -431,11 +431,8 @@ ul.toc li {
 <dd style="margin-left: 8">A filter expression that enables the conveyance of a subset of all attestation assertions available to the attester, if requested by a verifier.</dd>
 <dt>Attestation Evidence:</dt>
 <dd style="margin-left: 8">[H, S, O, V]</dd>
-</dl>
-<p id="rfc.section.2.p.2">A composite IE that must include at least an Authentication-Secret Identifier, an Attester Identity, and at least one Attestation Assertion.  Attestation Evidence is always signed via the Authentication Secret and thereby binds the listed information elements cryptographically.  Attestation Evidence can only be trusted by a verifier if it is associated with a trust anchor the verifier also trusts.</p>
-<p></p>
-
-<dl>
+<dt></dt>
+<dd style="margin-left: 8">A composite IE that must include at least an Authentication-Secret Identifier, an Attester Identity, and at least one Attestation Assertion.  Attestation Evidence is always signed via the Authentication Secret and thereby binds the listed information elements cryptographically.  Attestation Evidence can only be trusted by a verifier if it is associated with a trust anchor the verifier also trusts.</dd>
 <dt>Attester Identifier:</dt>
 <dd style="margin-left: 8">[P, O, V]</dd>
 <dt></dt>
@@ -455,7 +452,7 @@ ul.toc li {
 <dt>Endorsement Document:</dt>
 <dd style="margin-left: 8">[P, H, S, V]</dd>
 </dl>
-<p id="rfc.section.2.p.4">A document about the capabilities and functionality of one or more sub-components of a distinguishable attester issued and signed by a third party.  Endorsement Documents are intended to render Attestation Evidence trustworthy.  If not cryptographically associated with a trust anchor directly or indirectly, this IE is a specialization of System Component Identifier.</p>
+<p id="rfc.section.2.p.2">A document about the capabilities and functionality of one or more sub-components of a distinguishable attester issued and signed by a third party.  Endorsement Documents are intended to render Attestation Evidence trustworthy.  If not cryptographically associated with a trust anchor directly or indirectly, this IE is a specialization of System Component Identifier.</p>
 <p></p>
 
 <dl>
