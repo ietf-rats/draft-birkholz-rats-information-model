@@ -64,7 +64,7 @@ In general, RATS convey information elements that:
 
 * enable the functionality of remote attestation protocols,
 * are able to express assertions about an attester's composition, configuration, or operational state,
-* represent the provenance of assertions, including entities that provide assertions on behalf of the attester, and
+* represent the provenance of assertions, including entities that provide assertions on behalf of the attester,
 * compose a type of proof of validity with respect to other assertions, and that
 * are either verifiable (via comparison with trusted reference values) or non-verifiable.
 
@@ -117,7 +117,7 @@ Attestation Evidence:
 
 : [H, S, O, V]
 
-A composite IE that must include at least an Authentication-Secret Identifier, an Attester Identity, and at least one Attestation Assertion.
+: A composite IE that must include at least an Authentication-Secret Identifier, an Attester Identity, and at least one Attestation Assertion.
 Attestation Evidence is always signed via the Authentication Secret and thereby binds the listed information elements cryptographically.
 Attestation Evidence can only be trusted by a verifier if it is associated with a trust anchor the verifier also trusts.
 
