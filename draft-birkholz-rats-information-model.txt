@@ -5,7 +5,7 @@
 RATS Working Group                                           H. Birkholz
 Internet-Draft                                                  M. Eckel
 Intended status: Standards Track                          Fraunhofer SIT
-Expires: December 23, 2019                                 June 21, 2019
+Expires: January 9, 2020                                   July 08, 2019
 
 
             An Information Model for Assertions used in RATS
@@ -16,9 +16,9 @@ Abstract
    This document defines a standardized information model (IM) for
    assertions that can be used in remote attestation procedures (RATS).
    The information elements defined include attestation assertions which
-   provide information about system components characteristics, and
-   commonly used attributes and attribute structures used in protocols
-   for remote attestation.
+   provide information about system components characteristics, as well
+   as commonly used attributes and attribute structures that are
+   required by protocols facilitating remote attestation.
 
 Status of This Memo
 
@@ -35,7 +35,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on December 23, 2019.
+   This Internet-Draft will expire on January 9, 2020.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Birkholz & Eckel        Expires December 23, 2019               [Page 1]
+Birkholz & Eckel         Expires January 9, 2020                [Page 1]
 
-Internet-Draft                    IMARA                        June 2019
+Internet-Draft                    IMARA                        July 2019
 
 
    the Trust Legal Provisions and are provided without warranty as
@@ -66,14 +66,14 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Document Structure  . . . . . . . . . . . . . . . . . . .   3
    2.  RATS Information Elements . . . . . . . . . . . . . . . . . .   4
-   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   5
-   4.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   5
-   5.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .   5
-   6.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   6
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   6
-     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   6
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .   7
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   7
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
+   4.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
+   5.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+   6.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+     7.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   8
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
 
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Birkholz & Eckel        Expires December 23, 2019               [Page 2]
+Birkholz & Eckel         Expires January 9, 2020                [Page 2]
 
-Internet-Draft                    IMARA                        June 2019
+Internet-Draft                    IMARA                        July 2019
 
 
 1.1.  Document Structure
@@ -165,9 +165,9 @@ Internet-Draft                    IMARA                        June 2019
 
 
 
-Birkholz & Eckel        Expires December 23, 2019               [Page 3]
+Birkholz & Eckel         Expires January 9, 2020                [Page 3]
 
-Internet-Draft                    IMARA                        June 2019
+Internet-Draft                    IMARA                        July 2019
 
 
    The ordering of IE is in descending alphabetical order; independent
@@ -175,6 +175,16 @@ Internet-Draft                    IMARA                        June 2019
    hierarchy.
 
 2.  RATS Information Elements
+
+   Age:  The latency between the creation of an assertion value (e.g. by
+      asserters such as a hardware sensors or the Linux Integrity
+      Measurement Architecture) including its composition into
+      attestation evidence and its following conveyance to another RATS
+      Actor/Role in RATS.  The Age IE does not require a threshold at
+      which point another information element is considered "old" and an
+      age information element has to be included.
+
+      Reference: [I-D.ietf-rats-eat]
 
    Assertion Selection:  [P]
 
@@ -208,6 +218,14 @@ Internet-Draft                    IMARA                        June 2019
 
    Attestation Result:  [P]
 
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 4]
+
+Internet-Draft                    IMARA                        July 2019
+
+
       A set of one or more values that are created by an appraisal
       action of a verifier.  Attestation Result is the most generic
       definition of the output of RATS and are typically consumed by
@@ -218,32 +236,75 @@ Internet-Draft                    IMARA                        June 2019
       An identifier that is associated with an authentication secret
       used to sign attestation evidence.
 
-
-
-
-Birkholz & Eckel        Expires December 23, 2019               [Page 4]
-
-Internet-Draft                    IMARA                        June 2019
-
-
    Endorsement Document:  [P, H, S, V]
 
-   A document about the capabilities and functionality of one or more
-   sub-components of a distinguishable attester issued and signed by a
-   third party.  Endorsement Documents are intended to render
-   Attestation Evidence trustworthy.  If not cryptographically
-   associated with a trust anchor directly or indirectly, this IE is a
-   specialization of System Component Identifier.
+      A document about the capabilities and functionality of one or more
+      sub-components of a distinguishable attester issued and signed by
+      a third party.  Endorsement Documents are intended to render
+      Attestation Evidence trustworthy.  If not cryptographically
+      associated with a trust anchor directly or indirectly, this IE is
+      a specialization of System Component Identifier.
+
+   Location:  A global standardized set of coordinates and related
+      attributes representing the geographic position of a device based
+      on a geodetic system, such as Navstar GPS.  The coordinate values
+      can have different meaning with respect to the geographic position
+      of a device depending on the geodetic system used.  The default is
+      WGS-84.
+
+      The basic location attributes include: latitude, longitude,
+      altitude, accuracy, altitude accuracy, heading, and velocity.
+
+      Reference [I-D.ietf-rats-eat]
+
+   Measured Boot Characteristics:  [H, S, V]
+
+   If every piece of software is measured by a root-of-trust for
+   measuring during boot time and across staged computing contexts (e.g.
+   UEFI, Bootloader, Kernel, Rich OS), associated information about how
+   and in which operational states these measurements are conducted is
+   vital to RATS.  This IE represents several states of a (composite)
+   device with respect to measured boot (previously often called secure
+   boot) including: "Secure Boot Enabled", "Debug Disabled", "Debug
+   Disabled Since Boot", "Debug Permanent Disable", "Debug Full
+   Permanent Disable".
 
    Nonce:  [P]
 
-      TBD
+      An information element with two major uses: the prevention of
+      replay-attacks and as an IE that can be used in a challenge-
+      response interaction model.  It is created by the requester to
 
-   Origination:  TBD
 
-      TBD
 
-      Reference [I-D.mandyam-rats-eat]
+Birkholz & Eckel         Expires January 9, 2020                [Page 5]
+
+Internet-Draft                    IMARA                        July 2019
+
+
+      provide evidence about the freshness of the corresponding
+      response.  It is important to highlight that a nonce by itself
+      does not protect from relay-attacks.
+
+   OEM Identifier:  [H, S, V]
+
+      A organizationally unique identifier (OUI) assigned by the IEEE
+      Registration Authority (IEEE RA).  This IE is associated with a
+      device or a distinguishable sub-component of a composite device
+      with its own computing context.  It intended to identify a
+      device(component) during its life-cycle.  This is a specialization
+      of System Component Identifier.
+
+      Reference [I-D.ietf-rats-eat]
+
+   Origination:  An IE representing attestation provenance.  Attestation
+      Assertions or Attestation Evidence are produced by a specific
+      source of information that is intended to be uniquely
+      identifiable.  The source of information is a distinguishable
+      computing context (see [I-D.birkholz-rats-architecture]) of a
+      device or the sub-components of a composite device.
+
+      Reference [I-D.ietf-rats-eat]
 
    Universal Entity ID:  [P, H, V]
 
@@ -251,12 +312,57 @@ Internet-Draft                    IMARA                        June 2019
       manufactured entity / device, such as a mobile phone, a water
       meter, a Bluetooth speaker or a networked security camera.  This
       IE is intended to either identify an device or a submodule or
-      subsystem.  It does not identify types, models or classes of
-      devices.  It is akin to a serial number, though it does not have
-      to be sequential.  This IE is a specialization of System Component
-      Identifier.
+      subsystem of a device.  It does not identify types, models or
+      classes of devices.  It is akin to a serial number, though it does
+      not have to be sequential.  This IE is a specialization of System
+      Component Identifier.
 
-      Reference [I-D.mandyam-rats-eat]
+      Reference [I-D.ietf-rats-eat]
+
+   Uptime:  [H, S]
+
+      An IE representing the number of seconds since the first computing
+      context of a (composite) device is able to measure it.
+
+      Reference [I-D.ietf-rats-eat]
+
+   Security Level:  [H, S, V]
+
+      A level of confidence with respect to the resilience against
+      attacks intended to compromise attestation evidence.  A Security
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 6]
+
+Internet-Draft                    IMARA                        July 2019
+
+
+      Level can be associated with an Origination.  This IE is context
+      specific and requires a scope-specific definition of values as
+      part of a security framework.  The [I-D.ietf-rats-eat] document,
+      for example, provides an enumeration of security levels that is
+      similar to the Metadata Service defined by the Fast Identity
+      Online (FIDO) Alliance.
+
+      Reference [I-D.ietf-rats-eat]
+
+   System Component Identifier:  An identifier intended to uniquely
+      identify a distinguishable system component.  System components
+      can be hardware components or software components (e.g. a virtual
+      machine).  The system component can be an "atomic" device (i.e. a
+      composite device with only one hardware component) or a part of a
+      composite device.
+
+   Timestamp:  A generic information element that represents a certain
+      point of time in the past.  The level of confidence in the value
+      of a timestamp is based on the trustworthiness of the source of
+      time, which can be local or remote, a composite of multiple time
+      sources to represent the state synchronization, as well as the
+      precision and the accuracy of the source of time itself.
+
+      Timestamps can be time-zone specific and therefore change their
+      meaning if the definition of time zones changes.
 
 3.  Security Considerations
 
@@ -270,23 +376,23 @@ Internet-Draft                    IMARA                        June 2019
 
    Initial version -00
 
-
-
-
-
-
-
-
-Birkholz & Eckel        Expires December 23, 2019               [Page 5]
-
-Internet-Draft                    IMARA                        June 2019
-
-
 6.  Contributors
 
    TBD
 
 7.  References
+
+
+
+
+
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 7]
+
+Internet-Draft                    IMARA                        July 2019
+
 
 7.1.  Normative References
 
@@ -308,10 +414,10 @@ Internet-Draft                    IMARA                        June 2019
               "Time-Based Uni-Directional Attestation", draft-birkholz-
               rats-tuda-00 (work in progress), March 2019.
 
-   [I-D.mandyam-rats-eat]
+   [I-D.ietf-rats-eat]
               Mandyam, G., Lundblade, L., Ballesteros, M., and J.
               O'Donoghue, "The Entity Attestation Token (EAT)", draft-
-              mandyam-rats-eat-00 (work in progress), March 2019.
+              ietf-rats-eat-01 (work in progress), July 2019.
 
    [I-D.tschofenig-rats-psa-token]
               Tschofenig, H., Frost, S., Brossard, M., and A. Shaw,
@@ -329,16 +435,20 @@ Internet-Draft                    IMARA                        June 2019
               (NMDA)", RFC 8342, DOI 10.17487/RFC8342, March 2018,
               <https://www.rfc-editor.org/info/rfc8342>.
 
-
-
-
-
-Birkholz & Eckel        Expires December 23, 2019               [Page 6]
-
-Internet-Draft                    IMARA                        June 2019
-
-
 7.2.  Informative References
+
+   [I-D.birkholz-rats-reference-interaction-model]
+              Birkholz, H. and M. Eckel, "Reference Interaction Model
+              for Challenge-Response-based Remote Attestation", draft-
+              birkholz-rats-reference-interaction-model-00 (work in
+              progress), March 2019.
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 8]
+
+Internet-Draft                    IMARA                        July 2019
+
 
    [I-D.richardson-rats-usecases]
               Richardson, M., "Use cases for Remote Attestation common
@@ -389,4 +499,6 @@ Authors' Addresses
 
 
 
-Birkholz & Eckel        Expires December 23, 2019               [Page 7]
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 9]

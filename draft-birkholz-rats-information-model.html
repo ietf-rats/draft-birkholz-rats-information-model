@@ -300,9 +300,9 @@ ul.toc li {
 
   <meta name="dct.creator" content="Birkholz, H. and M. Eckel" />
   <meta name="dct.identifier" content="urn:ietf:id:draft-birkholz-rats-information-model-latest" />
-  <meta name="dct.issued" scheme="ISO8601" content="2019-06-21" />
-  <meta name="dct.abstract" content="This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).  The information elements defined include attestation assertions which provide information about system components characteristics, and commonly used attributes and attribute structures used in protocols for remote attestation." />
-  <meta name="description" content="This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).  The information elements defined include attestation assertions which provide information about system components characteristics, and commonly used attributes and attribute structures used in protocols for remote attestation." />
+  <meta name="dct.issued" scheme="ISO8601" content="2019-07-08" />
+  <meta name="dct.abstract" content="This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).  The information elements defined include attestation assertions which provide information about system components characteristics, as well as commonly used attributes and attribute structures that are required by protocols facilitating remote attestation." />
+  <meta name="description" content="This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).  The information elements defined include attestation assertions which provide information about system components characteristics, as well as commonly used attributes and attribute structures that are required by protocols facilitating remote attestation." />
 
 </head>
 
@@ -324,8 +324,8 @@ ul.toc li {
 <td class="right">Fraunhofer SIT</td>
 </tr>
 <tr>
-<td class="left">Expires: December 23, 2019</td>
-<td class="right">June 21, 2019</td>
+<td class="left">Expires: January 9, 2020</td>
+<td class="right">July 08, 2019</td>
 </tr>
 
     	
@@ -336,12 +336,12 @@ ul.toc li {
   <span class="filename">draft-birkholz-rats-information-model-latest</span></p>
   
   <h1 id="rfc.abstract"><a href="#rfc.abstract">Abstract</a></h1>
-<p>This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).  The information elements defined include attestation assertions which provide information about system components characteristics, and commonly used attributes and attribute structures used in protocols for remote attestation.</p>
+<p>This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).  The information elements defined include attestation assertions which provide information about system components characteristics, as well as commonly used attributes and attribute structures that are required by protocols facilitating remote attestation.</p>
 <h1 id="rfc.status"><a href="#rfc.status">Status of This Memo</a></h1>
 <p>This Internet-Draft is submitted in full conformance with the provisions of BCP 78 and BCP 79.</p>
 <p>Internet-Drafts are working documents of the Internet Engineering Task Force (IETF).  Note that other groups may also distribute working documents as Internet-Drafts.  The list of current Internet-Drafts is at https://datatracker.ietf.org/drafts/current/.</p>
 <p>Internet-Drafts are draft documents valid for a maximum of six months and may be updated, replaced, or obsoleted by other documents at any time.  It is inappropriate to use Internet-Drafts as reference material or to cite them other than as "work in progress."</p>
-<p>This Internet-Draft will expire on December 23, 2019.</p>
+<p>This Internet-Draft will expire on January 9, 2020.</p>
 <h1 id="rfc.copyrightnotice"><a href="#rfc.copyrightnotice">Copyright Notice</a></h1>
 <p>Copyright (c) 2019 IETF Trust and the persons identified as the document authors.  All rights reserved.</p>
 <p>This document is subject to BCP 78 and the IETF Trust's Legal Provisions Relating to IETF Documents (https://trustee.ietf.org/license-info) in effect on the date of publication of this document.  Please review these documents carefully, as they describe your rights and restrictions with respect to this document.  Code Components extracted from this document must include Simplified BSD License text as described in Section 4.e of the Trust Legal Provisions and are provided without warranty as described in the Simplified BSD License.</p>
@@ -425,6 +425,11 @@ ul.toc li {
 <p></p>
 
 <dl>
+<dt>Age:</dt>
+<dd style="margin-left: 8">The latency between the creation of an assertion value (e.g. by asserters such as a hardware sensors or the Linux Integrity Measurement Architecture) including its composition into attestation evidence and its following conveyance to another RATS Actor/Role in RATS.  The Age IE does not require a threshold at which point another information element is considered &#8220;old&#8221; and an age information element has to be included.</dd>
+<dt></dt>
+<dd style="margin-left: 8">Reference: <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
+</dd>
 <dt>Assertion Selection:</dt>
 <dd style="margin-left: 8">[P]</dd>
 <dt></dt>
@@ -451,29 +456,65 @@ ul.toc li {
 <dd style="margin-left: 8">An identifier that is associated with an authentication secret used to sign attestation evidence.</dd>
 <dt>Endorsement Document:</dt>
 <dd style="margin-left: 8">[P, H, S, V]</dd>
+<dt></dt>
+<dd style="margin-left: 8">A document about the capabilities and functionality of one or more sub-components of a distinguishable attester issued and signed by a third party.  Endorsement Documents are intended to render Attestation Evidence trustworthy.  If not cryptographically associated with a trust anchor directly or indirectly, this IE is a specialization of System Component Identifier.</dd>
+<dt>Location:</dt>
+<dd style="margin-left: 8">A global standardized set of coordinates and related attributes representing the geographic position of a device based on a geodetic system, such as Navstar GPS. The coordinate values can have different meaning with respect to the geographic position of a device depending on the geodetic system used. The default is WGS-84.</dd>
+<dt></dt>
+<dd style="margin-left: 8">The basic location attributes include: latitude, longitude, altitude, accuracy, altitude accuracy, heading, and velocity.</dd>
+<dt></dt>
+<dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
+</dd>
+<dt>Measured Boot Characteristics:</dt>
+<dd style="margin-left: 8">[H, S, V]</dd>
 </dl>
-<p id="rfc.section.2.p.2">A document about the capabilities and functionality of one or more sub-components of a distinguishable attester issued and signed by a third party.  Endorsement Documents are intended to render Attestation Evidence trustworthy.  If not cryptographically associated with a trust anchor directly or indirectly, this IE is a specialization of System Component Identifier.</p>
+<p id="rfc.section.2.p.2">If every piece of software is measured by a root-of-trust for measuring during boot time and across staged computing contexts (e.g. UEFI, Bootloader, Kernel, Rich OS), associated information about how and in which operational states these measurements are conducted is vital to RATS.  This IE represents several states of a (composite) device with respect to measured boot (previously often called secure boot) including: &#8220;Secure Boot Enabled&#8221;, &#8220;Debug Disabled&#8221;, &#8220;Debug Disabled Since Boot&#8221;, &#8220;Debug Permanent Disable&#8221;, &#8220;Debug Full Permanent Disable&#8221;.</p>
 <p></p>
 
 <dl>
 <dt>Nonce:</dt>
 <dd style="margin-left: 8">[P]</dd>
 <dt></dt>
-<dd style="margin-left: 8">TBD</dd>
+<dd style="margin-left: 8">An information element with two major uses: the prevention of replay-attacks and as an IE that can be used in a challenge-response interaction model.  It is created by the requester to provide evidence about the freshness of the corresponding response.  It is important to highlight that a nonce by itself does not protect from relay-attacks.</dd>
+<dt>OEM Identifier:</dt>
+<dd style="margin-left: 8">[H, S, V]</dd>
+<dt></dt>
+<dd style="margin-left: 8">A organizationally unique identifier (OUI) assigned by the IEEE Registration Authority (IEEE RA).  This IE is associated with a device or a distinguishable sub-component of a composite device with its own computing context.  It intended to identify a device(component) during its life-cycle.  This is a specialization of System Component Identifier.</dd>
+<dt></dt>
+<dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
+</dd>
 <dt>Origination:</dt>
-<dd style="margin-left: 8">TBD</dd>
+<dd style="margin-left: 8">An IE representing attestation provenance. Attestation Assertions or Attestation Evidence are produced by a specific source of information that is intended to be uniquely identifiable. The source of information is a distinguishable computing context (see <a href="#I-D.birkholz-rats-architecture" class="xref">[I-D.birkholz-rats-architecture]</a>) of a device or the sub-components of a composite device.</dd>
 <dt></dt>
-<dd style="margin-left: 8">TBD</dd>
-<dt></dt>
-<dd style="margin-left: 8">Reference <a href="#I-D.mandyam-rats-eat" class="xref">[I-D.mandyam-rats-eat]</a>
+<dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
 </dd>
 <dt>Universal Entity ID:</dt>
 <dd style="margin-left: 8">[P, H, V]</dd>
 <dt></dt>
-<dd style="margin-left: 8">A unique identifier permanently associated with an individual manufactured entity / device, such as a mobile phone, a water meter, a Bluetooth speaker or a networked security camera.  This IE is intended to either identify an device or a submodule or subsystem.  It does not identify types, models or classes of devices.  It is akin to a serial number, though it does not have to be sequential.  This IE is a specialization of System Component Identifier.</dd>
+<dd style="margin-left: 8">A unique identifier permanently associated with an individual manufactured entity / device, such as a mobile phone, a water meter, a Bluetooth speaker or a networked security camera.  This IE is intended to either identify an device or a submodule or subsystem of a device.  It does not identify types, models or classes of devices.  It is akin to a serial number, though it does not have to be sequential.  This IE is a specialization of System Component Identifier.</dd>
 <dt></dt>
-<dd style="margin-left: 8">Reference <a href="#I-D.mandyam-rats-eat" class="xref">[I-D.mandyam-rats-eat]</a>
+<dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
 </dd>
+<dt>Uptime:</dt>
+<dd style="margin-left: 8">[H, S]</dd>
+<dt></dt>
+<dd style="margin-left: 8">An IE representing the number of seconds since the first computing context of a (composite) device is able to measure it.</dd>
+<dt></dt>
+<dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
+</dd>
+<dt>Security Level:</dt>
+<dd style="margin-left: 8">[H, S, V]</dd>
+<dt></dt>
+<dd style="margin-left: 8">A level of confidence with respect to the resilience against attacks intended to compromise attestation evidence. A Security Level can be associated with an Origination.  This IE is context specific and requires a scope-specific definition of values as part of a security framework.  The <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a> document, for example, provides an enumeration of security levels that is similar to the Metadata Service defined by the Fast Identity Online (FIDO) Alliance.</dd>
+<dt></dt>
+<dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
+</dd>
+<dt>System Component Identifier:</dt>
+<dd style="margin-left: 8">An identifier intended to uniquely identify a distinguishable system component. System components can be hardware components or software components (e.g. a virtual machine).  The system component can be an &#8220;atomic&#8221; device (i.e. a composite device with only one hardware component) or a part of a composite device.</dd>
+<dt>Timestamp:</dt>
+<dd style="margin-left: 8">A generic information element that represents a certain point of time in the past. The level of confidence in the value of a timestamp is based on the trustworthiness of the source of time, which can be local or remote, a composite of multiple time sources to represent the state synchronization, as well as the precision and the accuracy of the source of time itself.</dd>
+<dt></dt>
+<dd style="margin-left: 8">Timestamps can be time-zone specific and therefore change their meaning if the definition of time zones changes.</dd>
 </dl>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
@@ -512,9 +553,9 @@ ul.toc li {
 <a>Fuchs, A.</a>, <a>Birkholz, H.</a>, <a>McDonald, I.</a> and <a>C. Bormann</a>, "<a href="https://tools.ietf.org/html/draft-birkholz-rats-tuda-00">Time-Based Uni-Directional Attestation</a>", Internet-Draft draft-birkholz-rats-tuda-00, March 2019.</td>
 </tr>
 <tr>
-<td class="reference"><b id="I-D.mandyam-rats-eat">[I-D.mandyam-rats-eat]</b></td>
+<td class="reference"><b id="I-D.ietf-rats-eat">[I-D.ietf-rats-eat]</b></td>
 <td class="top">
-<a>Mandyam, G.</a>, <a>Lundblade, L.</a>, <a>Ballesteros, M.</a> and <a>J. O'Donoghue</a>, "<a href="https://tools.ietf.org/html/draft-mandyam-rats-eat-00">The Entity Attestation Token (EAT)</a>", Internet-Draft draft-mandyam-rats-eat-00, March 2019.</td>
+<a>Mandyam, G.</a>, <a>Lundblade, L.</a>, <a>Ballesteros, M.</a> and <a>J. O'Donoghue</a>, "<a href="https://tools.ietf.org/html/draft-ietf-rats-eat-01">The Entity Attestation Token (EAT)</a>", Internet-Draft draft-ietf-rats-eat-01, July 2019.</td>
 </tr>
 <tr>
 <td class="reference"><b id="I-D.tschofenig-rats-psa-token">[I-D.tschofenig-rats-psa-token]</b></td>
@@ -534,11 +575,18 @@ ul.toc li {
 </tbody></table>
 <h1 id="rfc.references.2">
 <a href="#rfc.references.2">7.2.</a> Informative References</h1>
-<table><tbody><tr>
+<table><tbody>
+<tr>
+<td class="reference"><b id="I-D.birkholz-rats-reference-interaction-model">[I-D.birkholz-rats-reference-interaction-model]</b></td>
+<td class="top">
+<a>Birkholz, H.</a> and <a>M. Eckel</a>, "<a href="https://tools.ietf.org/html/draft-birkholz-rats-reference-interaction-model-00">Reference Interaction Model for Challenge-Response-based Remote Attestation</a>", Internet-Draft draft-birkholz-rats-reference-interaction-model-00, March 2019.</td>
+</tr>
+<tr>
 <td class="reference"><b id="I-D.richardson-rats-usecases">[I-D.richardson-rats-usecases]</b></td>
 <td class="top">
 <a>Richardson, M.</a>, "<a href="https://tools.ietf.org/html/draft-richardson-rats-usecases-02">Use cases for Remote Attestation common encodings</a>", Internet-Draft draft-richardson-rats-usecases-02, June 2019.</td>
-</tr></tbody></table>
+</tr>
+</tbody></table>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
 <div class="avoidbreak">
   <address class="vcard">
