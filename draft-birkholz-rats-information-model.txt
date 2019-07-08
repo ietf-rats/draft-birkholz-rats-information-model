@@ -242,7 +242,7 @@ Internet-Draft                    IMARA                        July 2019
       can be Nonce, but also the output of a local attestation
       procedure.
 
-   Reference [I-D.tschofenig-rats-psa-token]
+      Reference [I-D.tschofenig-rats-psa-token]
 
    Endorsement Document:  [P, H, S, V]
 
@@ -267,13 +267,13 @@ Internet-Draft                    IMARA                        July 2019
 
    Measured Boot Characteristics:  [H, S, V]
 
-   If every piece of software is measured by a root-of-trust for
-   measuring during boot time and across staged computing contexts (e.g.
-   UEFI, Bootloader, Kernel, Rich OS), associated information about how
-   and in which operational states these measurements are conducted is
-   vital to RATS.  This IE represents several states of a (composite)
-   device with respect to measured boot (previously often called secure
-   boot) including: "Secure Boot Enabled", "Debug Disabled", "Debug
+      If every piece of software is measured by a root-of-trust for
+      measuring during boot time and across staged computing contexts
+      (e.g.  UEFI, Bootloader, Kernel, Rich OS), associated information
+      about how and in which operational states these measurements are
+      conducted is vital to RATS.  This IE represents several states of
+      a (composite) device with respect to measured boot (previously
+      often called secure boot) including: "Secure Boot Enabled", "Debug
 
 
 
@@ -282,8 +282,8 @@ Birkholz & Eckel         Expires January 9, 2020                [Page 5]
 Internet-Draft                    IMARA                        July 2019
 
 
-   Disabled Since Boot", "Debug Permanent Disable", "Debug Full
-   Permanent Disable".
+      Disabled", "Debug Disabled Since Boot", "Debug Permanent Disable",
+      "Debug Full Permanent Disable".
 
    Nonce:  [P]
 
@@ -305,12 +305,14 @@ Internet-Draft                    IMARA                        July 2019
 
       Reference [I-D.ietf-rats-eat]
 
-   Origination:  An IE representing attestation provenance.  Attestation
-      Assertions or Attestation Evidence are produced by a specific
-      source of information that is intended to be uniquely
-      identifiable.  The source of information is a distinguishable
-      computing context (see [I-D.birkholz-rats-architecture]) of a
-      device or the sub-components of a composite device.
+   Origination:  [P, S, V]]
+
+      An IE representing attestation provenance.  Attestation Assertions
+      or Attestation Evidence are produced by a specific source of
+      information that is intended to be uniquely identifiable.  The
+      source of information is a distinguishable computing context (see
+      [I-D.birkholz-rats-architecture]) of a device or the sub-
+      components of a composite device.
 
       Reference [I-D.ietf-rats-eat]
 
@@ -328,8 +330,6 @@ Internet-Draft                    IMARA                        July 2019
       Reference [I-D.ietf-rats-eat]
 
    Uptime:  [H, S]
-
-
 
 
 
@@ -363,7 +363,7 @@ Internet-Draft                    IMARA                        July 2019
       appropriate root-of-trust.  The use of this IE typically requires
       the use of Measured Boot.
 
-   Reference [I-D.tschofenig-rats-psa-token]
+      Reference [I-D.tschofenig-rats-psa-token]
 
    System Component Identifier:  [H, S, V]
 
@@ -373,19 +373,19 @@ Internet-Draft                    IMARA                        July 2019
       component can be an "atomic" device (i.e. a composite device with
       only one hardware component) or a part of a composite device.
 
-   Timestamp:  A generic information element that represents a certain
-      point of time in the past.  The level of confidence in the value
-      of a timestamp is based on the trustworthiness of the source of
-      time, which can be local or remote, a composite of multiple time
-      sources to represent the state synchronization, as well as the
-      precision and the accuracy of the source of time itself.
+   Timestamp:  [P, S]
+
+      A generic information element that represents a certain point of
+      time in the past.  The level of confidence in the value of a
+      timestamp is based on the trustworthiness of the source of time,
+      which can be local or remote, a composite of multiple time sources
+      to represent the state synchronization, as well as the precision
+      and the accuracy of the source of time itself.
 
       Timestamps can be time-zone specific and therefore change their
       meaning if the definition of time zones changes.
 
-   Verification Service Indicator:  This IE provides a hint (typically
-      consumed by a Relying Party) that enables the discovery of an
-
+   Verification Service Indicator:  [P, S, V]
 
 
 
@@ -394,8 +394,11 @@ Birkholz & Eckel         Expires January 9, 2020                [Page 7]
 Internet-Draft                    IMARA                        July 2019
 
 
-      appropriate Verification Service or Remote Attestation Service,
-      e.g. a URL.
+      This IE provides a hint (typically consumed by a Relying Party)
+      that enables the discovery of an appropriate Verification Service
+      or Remote Attestation Service, e.g. a URL.
+
+      Reference [I-D.tschofenig-rats-psa-token]
 
 3.  Security Considerations
 
@@ -439,9 +442,6 @@ Internet-Draft                    IMARA                        July 2019
               Mandyam, G., Lundblade, L., Ballesteros, M., and J.
               O'Donoghue, "The Entity Attestation Token (EAT)", draft-
               ietf-rats-eat-01 (work in progress), July 2019.
-
-
-
 
 
 
