@@ -38,18 +38,18 @@ normative:
   RFC8342:
   I-D.birkholz-rats-architecture: rats-arch
   I-D.birkholz-rats-tuda: TUDA
-  I-D.mandyam-rats-eat: EAT
+  I-D.ietf-rats-eat: EAT
   I-D.tschofenig-rats-psa-token: PSA-token
   I-D.birkholz-rats-basic-yang-module: rats-yang
 
 informative:
-  I-D-birkholz-rats-reference-interaction-model: rats-interaction
+  I-D.birkholz-rats-reference-interaction-model: rats-interaction
   I-D.richardson-rats-usecases: rats-usecases
 
 --- abstract
 
 This document defines a standardized information model (IM) for assertions that can be used in remote attestation procedures (RATS).
-The information elements defined include attestation assertions which provide information about system components characteristics, and commonly used attributes and attribute structures used in protocols for remote attestation.
+The information elements defined include attestation assertions which provide information about system components characteristics, as well as commonly used attributes and attribute structures that are required by protocols facilitating remote attestation.
 
 --- middle
 
@@ -107,6 +107,13 @@ The ordering of IE is in descending alphabetical order; independent of source or
 
 # RATS Information Elements
 
+Age:
+
+: The latency between the creation of an assertion value (e.g. by asserters such as a hardware sensors or the Linux Integrity Measurement Architecture) including its composition into attestation evidence and its following conveyance to another RATS Actor/Role in RATS.
+The Age IE does not require a threshold at which point another information element is considered "old" and an age information element has to be included.
+
+: Reference: {{-EAT}}
+
 Assertion Selection:
 
 : [P]
@@ -152,21 +159,47 @@ Endorsement Document:
 
 : [P, H, S, V]
 
-A document about the capabilities and functionality of one or more sub-components of a distinguishable attester issued and signed by a third party.
+: A document about the capabilities and functionality of one or more sub-components of a distinguishable attester issued and signed by a third party.
 Endorsement Documents are intended to render Attestation Evidence trustworthy.
 If not cryptographically associated with a trust anchor directly or indirectly, this IE is a specialization of System Component Identifier.
+
+Location:
+
+: A global standardized set of coordinates and related attributes representing the geographic position of a device based on a geodetic system, such as Navstar GPS. The coordinate values can have different meaning with respect to the geographic position of a device depending on the geodetic system used. The default is WGS-84.
+
+: The basic location attributes include: latitude, longitude, altitude, accuracy, altitude accuracy, heading, and velocity.
+
+: Reference {{-EAT}}
+
+Measured Boot Characteristics:
+
+: [H, S, V]
+
+If every piece of software is measured by a root-of-trust for measuring during boot time and across staged computing contexts (e.g. UEFI, Bootloader, Kernel, Rich OS), associated information about how and in which operational states these measurements are conducted is vital to RATS.
+This IE represents several states of a (composite) device with respect to measured boot (previously often called secure boot) including: "Secure Boot Enabled", "Debug Disabled", "Debug Disabled Since Boot", "Debug Permanent Disable", "Debug Full Permanent Disable".
 
 Nonce:
 
 : [P]
 
-: TBD
+: An information element with two major uses: the prevention of replay-attacks and as an IE that can be used in a challenge-response interaction model.
+It is created by the requester to provide evidence about the freshness of the corresponding response.
+It is important to highlight that a nonce by itself does not protect from relay-attacks.
+
+OEM Identifier:
+
+: [H, S, V]
+
+: A organizationally unique identifier (OUI) assigned by the IEEE Registration Authority (IEEE RA).
+This IE is associated with a device or a distinguishable sub-component of a composite device with its own computing context.
+It intended to identify a device(component) during its life-cycle.
+This is a specialization of System Component Identifier.
+
+: Reference {{-EAT}}
 
 Origination:
 
-: TBD
-
-: TBD
+: An IE representing attestation provenance. Attestation Assertions or Attestation Evidence are produced by a specific source of information that is intended to be uniquely identifiable. The source of information is a distinguishable computing context (see {{-rats-arch}}) of a device or the sub-components of a composite device.
 
 : Reference {{-EAT}}
 
@@ -175,12 +208,41 @@ Universal Entity ID:
 : [P, H, V]
 
 : A unique identifier permanently associated with an individual manufactured entity / device, such as a mobile phone, a water meter, a Bluetooth speaker or a networked security camera.
-This IE is intended to either identify an device or a submodule or subsystem.
+This IE is intended to either identify an device or a submodule or subsystem of a device.
 It does not identify types, models or classes of devices.
 It is akin to a serial number, though it does not have to be sequential.
 This IE is a specialization of System Component Identifier.
 
 : Reference {{-EAT}}
+
+Uptime:
+
+: [H, S]
+
+: An IE representing the number of seconds since the first computing context of a (composite) device is able to measure it.
+
+: Reference {{-EAT}}
+
+Security Level:
+
+: [H, S, V]
+
+: A level of confidence with respect to the resilience against attacks intended to compromise attestation evidence. A Security Level can be associated with an Origination.
+This IE is context specific and requires a scope-specific definition of values as part of a security framework.
+The {{-EAT}} document, for example, provides an enumeration of security levels that is similar to the Metadata Service defined by the Fast Identity Online (FIDO) Alliance.
+
+: Reference {{-EAT}}
+
+System Component Identifier:
+
+: An identifier intended to uniquely identify a distinguishable system component. System components can be hardware components or software components (e.g. a virtual machine).
+The system component can be an "atomic" device (i.e. a composite device with only one hardware component) or a part of a composite device.
+
+Timestamp:
+
+: A generic information element that represents a certain point of time in the past. The level of confidence in the value of a timestamp is based on the trustworthiness of the source of time, which can be local or remote, a composite of multiple time sources to represent the state synchronization, as well as the precision and the accuracy of the source of time itself.
+
+: Timestamps can be time-zone specific and therefore change their meaning if the definition of time zones changes.
 
 #  Security Considerations
 
