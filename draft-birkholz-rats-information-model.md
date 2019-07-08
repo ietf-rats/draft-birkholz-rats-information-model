@@ -45,6 +45,7 @@ normative:
 informative:
   I-D.birkholz-rats-reference-interaction-model: rats-interaction
   I-D.richardson-rats-usecases: rats-usecases
+  I-D.ietf-sacm-terminology: sacm-terms
 
 --- abstract
 
@@ -155,6 +156,15 @@ Authentication-Secret Identifier:
 
 : An identifier that is associated with an authentication secret used to sign attestation evidence.
 
+Authorization Challenge:
+
+: [P]
+
+: The input to an challenge-response protocol hand-shake.
+This IE can be Nonce, but also the output of a local attestation procedure.
+
+Reference {{-PSA-token}}
+
 Endorsement Document:
 
 : [P, H, S, V]
@@ -233,7 +243,18 @@ The {{-EAT}} document, for example, provides an enumeration of security levels t
 
 : Reference {{-EAT}}
 
+Software Component Identifier:
+
+: [S, V]
+
+: An IE representing one or more distinguishable Software Components {{-sacm-terms}} that were loaded and measured by an appropriate root-of-trust.
+The use of this IE typically requires the use of Measured Boot.
+
+Reference {{-PSA-token}}
+
 System Component Identifier:
+
+: [H, S, V]
 
 : An identifier intended to uniquely identify a distinguishable system component. System components can be hardware components or software components (e.g. a virtual machine).
 The system component can be an "atomic" device (i.e. a composite device with only one hardware component) or a part of a composite device.
@@ -243,6 +264,10 @@ Timestamp:
 : A generic information element that represents a certain point of time in the past. The level of confidence in the value of a timestamp is based on the trustworthiness of the source of time, which can be local or remote, a composite of multiple time sources to represent the state synchronization, as well as the precision and the accuracy of the source of time itself.
 
 : Timestamps can be time-zone specific and therefore change their meaning if the definition of time zones changes.
+
+Verification Service Indicator:
+
+: This IE provides a hint (typically consumed by a Relying Party) that enables the discovery of an appropriate Verification Service or Remote Attestation Service, e.g. a URL.
 
 #  Security Considerations
 
