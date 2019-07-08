@@ -66,13 +66,13 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Document Structure  . . . . . . . . . . . . . . . . . . .   3
    2.  RATS Information Elements . . . . . . . . . . . . . . . . . .   4
-   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   7
-   4.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   7
-   5.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .   7
-   6.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   7
-   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   7
+   3.  Security Considerations . . . . . . . . . . . . . . . . . . .   8
+   4.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .   8
+   5.  Change Log  . . . . . . . . . . . . . . . . . . . . . . . . .   8
+   6.  Contributors  . . . . . . . . . . . . . . . . . . . . . . . .   8
+   7.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
      7.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
-     7.2.  Informative References  . . . . . . . . . . . . . . . . .   8
+     7.2.  Informative References  . . . . . . . . . . . . . . . . .   9
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .   9
 
 1.  Introduction
@@ -236,6 +236,14 @@ Internet-Draft                    IMARA                        July 2019
       An identifier that is associated with an authentication secret
       used to sign attestation evidence.
 
+   Authorization Challenge:  [P]
+
+      The input to an challenge-response protocol hand-shake.  This IE
+      can be Nonce, but also the output of a local attestation
+      procedure.
+
+   Reference [I-D.tschofenig-rats-psa-token]
+
    Endorsement Document:  [P, H, S, V]
 
       A document about the capabilities and functionality of one or more
@@ -266,14 +274,6 @@ Internet-Draft                    IMARA                        July 2019
    vital to RATS.  This IE represents several states of a (composite)
    device with respect to measured boot (previously often called secure
    boot) including: "Secure Boot Enabled", "Debug Disabled", "Debug
-   Disabled Since Boot", "Debug Permanent Disable", "Debug Full
-   Permanent Disable".
-
-   Nonce:  [P]
-
-      An information element with two major uses: the prevention of
-      replay-attacks and as an IE that can be used in a challenge-
-      response interaction model.  It is created by the requester to
 
 
 
@@ -282,6 +282,14 @@ Birkholz & Eckel         Expires January 9, 2020                [Page 5]
 Internet-Draft                    IMARA                        July 2019
 
 
+   Disabled Since Boot", "Debug Permanent Disable", "Debug Full
+   Permanent Disable".
+
+   Nonce:  [P]
+
+      An information element with two major uses: the prevention of
+      replay-attacks and as an IE that can be used in a challenge-
+      response interaction model.  It is created by the requester to
       provide evidence about the freshness of the corresponding
       response.  It is important to highlight that a nonce by itself
       does not protect from relay-attacks.
@@ -321,6 +329,15 @@ Internet-Draft                    IMARA                        July 2019
 
    Uptime:  [H, S]
 
+
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 6]
+
+Internet-Draft                    IMARA                        July 2019
+
+
       An IE representing the number of seconds since the first computing
       context of a (composite) device is able to measure it.
 
@@ -330,14 +347,6 @@ Internet-Draft                    IMARA                        July 2019
 
       A level of confidence with respect to the resilience against
       attacks intended to compromise attestation evidence.  A Security
-
-
-
-Birkholz & Eckel         Expires January 9, 2020                [Page 6]
-
-Internet-Draft                    IMARA                        July 2019
-
-
       Level can be associated with an Origination.  This IE is context
       specific and requires a scope-specific definition of values as
       part of a security framework.  The [I-D.ietf-rats-eat] document,
@@ -347,12 +356,22 @@ Internet-Draft                    IMARA                        July 2019
 
       Reference [I-D.ietf-rats-eat]
 
-   System Component Identifier:  An identifier intended to uniquely
-      identify a distinguishable system component.  System components
-      can be hardware components or software components (e.g. a virtual
-      machine).  The system component can be an "atomic" device (i.e. a
-      composite device with only one hardware component) or a part of a
-      composite device.
+   Software Component Identifier:  [S, V]
+
+      An IE representing one or more distinguishable Software Components
+      [I-D.ietf-sacm-terminology] that were loaded and measured by an
+      appropriate root-of-trust.  The use of this IE typically requires
+      the use of Measured Boot.
+
+   Reference [I-D.tschofenig-rats-psa-token]
+
+   System Component Identifier:  [H, S, V]
+
+      An identifier intended to uniquely identify a distinguishable
+      system component.  System components can be hardware components or
+      software components (e.g. a virtual machine).  The system
+      component can be an "atomic" device (i.e. a composite device with
+      only one hardware component) or a part of a composite device.
 
    Timestamp:  A generic information element that represents a certain
       point of time in the past.  The level of confidence in the value
@@ -363,6 +382,20 @@ Internet-Draft                    IMARA                        July 2019
 
       Timestamps can be time-zone specific and therefore change their
       meaning if the definition of time zones changes.
+
+   Verification Service Indicator:  This IE provides a hint (typically
+      consumed by a Relying Party) that enables the discovery of an
+
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 7]
+
+Internet-Draft                    IMARA                        July 2019
+
+
+      appropriate Verification Service or Remote Attestation Service,
+      e.g. a URL.
 
 3.  Security Considerations
 
@@ -381,18 +414,6 @@ Internet-Draft                    IMARA                        July 2019
    TBD
 
 7.  References
-
-
-
-
-
-
-
-
-Birkholz & Eckel         Expires January 9, 2020                [Page 7]
-
-Internet-Draft                    IMARA                        July 2019
-
 
 7.1.  Normative References
 
@@ -419,11 +440,21 @@ Internet-Draft                    IMARA                        July 2019
               O'Donoghue, "The Entity Attestation Token (EAT)", draft-
               ietf-rats-eat-01 (work in progress), July 2019.
 
+
+
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 8]
+
+Internet-Draft                    IMARA                        July 2019
+
+
    [I-D.tschofenig-rats-psa-token]
-              Tschofenig, H., Frost, S., Brossard, M., and A. Shaw,
-              "Arm's Platform Security Architecture (PSA) Attestation
-              Token", draft-tschofenig-rats-psa-token-01 (work in
-              progress), April 2019.
+              Tschofenig, H., Frost, S., Brossard, M., Shaw, A., and T.
+              Fossati, "Arm's Platform Security Architecture (PSA)
+              Attestation Token", draft-tschofenig-rats-psa-token-02
+              (work in progress), July 2019.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -443,17 +474,16 @@ Internet-Draft                    IMARA                        July 2019
               birkholz-rats-reference-interaction-model-00 (work in
               progress), March 2019.
 
-
-
-Birkholz & Eckel         Expires January 9, 2020                [Page 8]
-
-Internet-Draft                    IMARA                        July 2019
-
+   [I-D.ietf-sacm-terminology]
+              Birkholz, H., Lu, J., Strassner, J., Cam-Winget, N., and
+              A. Montville, "Security Automation and Continuous
+              Monitoring (SACM) Terminology", draft-ietf-sacm-
+              terminology-16 (work in progress), December 2018.
 
    [I-D.richardson-rats-usecases]
-              Richardson, M., "Use cases for Remote Attestation common
-              encodings", draft-richardson-rats-usecases-02 (work in
-              progress), June 2019.
+              Richardson, M., Wallace, C., and W. Pan, "Use cases for
+              Remote Attestation common encodings", draft-richardson-
+              rats-usecases-03 (work in progress), July 2019.
 
 Authors' Addresses
 
@@ -464,6 +494,16 @@ Authors' Addresses
    Germany
 
    Email: henk.birkholz@sit.fraunhofer.de
+
+
+
+
+
+
+
+Birkholz & Eckel         Expires January 9, 2020                [Page 9]
+
+Internet-Draft                    IMARA                        July 2019
 
 
    Michael Eckel
@@ -501,4 +541,20 @@ Authors' Addresses
 
 
 
-Birkholz & Eckel         Expires January 9, 2020                [Page 9]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Birkholz & Eckel         Expires January 9, 2020               [Page 10]

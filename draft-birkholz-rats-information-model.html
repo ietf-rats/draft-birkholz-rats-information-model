@@ -454,6 +454,15 @@ ul.toc li {
 <dd style="margin-left: 8">[O, V]</dd>
 <dt></dt>
 <dd style="margin-left: 8">An identifier that is associated with an authentication secret used to sign attestation evidence.</dd>
+<dt>Authorization Challenge:</dt>
+<dd style="margin-left: 8">[P]</dd>
+<dt></dt>
+<dd style="margin-left: 8">The input to an challenge-response protocol hand-shake.  This IE can be Nonce, but also the output of a local attestation procedure.</dd>
+</dl>
+<p id="rfc.section.2.p.2">Reference <a href="#I-D.tschofenig-rats-psa-token" class="xref">[I-D.tschofenig-rats-psa-token]</a></p>
+<p></p>
+
+<dl>
 <dt>Endorsement Document:</dt>
 <dd style="margin-left: 8">[P, H, S, V]</dd>
 <dt></dt>
@@ -468,7 +477,7 @@ ul.toc li {
 <dt>Measured Boot Characteristics:</dt>
 <dd style="margin-left: 8">[H, S, V]</dd>
 </dl>
-<p id="rfc.section.2.p.2">If every piece of software is measured by a root-of-trust for measuring during boot time and across staged computing contexts (e.g. UEFI, Bootloader, Kernel, Rich OS), associated information about how and in which operational states these measurements are conducted is vital to RATS.  This IE represents several states of a (composite) device with respect to measured boot (previously often called secure boot) including: &#8220;Secure Boot Enabled&#8221;, &#8220;Debug Disabled&#8221;, &#8220;Debug Disabled Since Boot&#8221;, &#8220;Debug Permanent Disable&#8221;, &#8220;Debug Full Permanent Disable&#8221;.</p>
+<p id="rfc.section.2.p.4">If every piece of software is measured by a root-of-trust for measuring during boot time and across staged computing contexts (e.g. UEFI, Bootloader, Kernel, Rich OS), associated information about how and in which operational states these measurements are conducted is vital to RATS.  This IE represents several states of a (composite) device with respect to measured boot (previously often called secure boot) including: &#8220;Secure Boot Enabled&#8221;, &#8220;Debug Disabled&#8221;, &#8220;Debug Disabled Since Boot&#8221;, &#8220;Debug Permanent Disable&#8221;, &#8220;Debug Full Permanent Disable&#8221;.</p>
 <p></p>
 
 <dl>
@@ -509,12 +518,25 @@ ul.toc li {
 <dt></dt>
 <dd style="margin-left: 8">Reference <a href="#I-D.ietf-rats-eat" class="xref">[I-D.ietf-rats-eat]</a>
 </dd>
+<dt>Software Component Identifier:</dt>
+<dd style="margin-left: 8">[S, V]</dd>
+<dt></dt>
+<dd style="margin-left: 8">An IE representing one or more distinguishable Software Components <a href="#I-D.ietf-sacm-terminology" class="xref">[I-D.ietf-sacm-terminology]</a> that were loaded and measured by an appropriate root-of-trust.  The use of this IE typically requires the use of Measured Boot.</dd>
+</dl>
+<p id="rfc.section.2.p.6">Reference <a href="#I-D.tschofenig-rats-psa-token" class="xref">[I-D.tschofenig-rats-psa-token]</a></p>
+<p></p>
+
+<dl>
 <dt>System Component Identifier:</dt>
+<dd style="margin-left: 8">[H, S, V]</dd>
+<dt></dt>
 <dd style="margin-left: 8">An identifier intended to uniquely identify a distinguishable system component. System components can be hardware components or software components (e.g. a virtual machine).  The system component can be an &#8220;atomic&#8221; device (i.e. a composite device with only one hardware component) or a part of a composite device.</dd>
 <dt>Timestamp:</dt>
 <dd style="margin-left: 8">A generic information element that represents a certain point of time in the past. The level of confidence in the value of a timestamp is based on the trustworthiness of the source of time, which can be local or remote, a composite of multiple time sources to represent the state synchronization, as well as the precision and the accuracy of the source of time itself.</dd>
 <dt></dt>
 <dd style="margin-left: 8">Timestamps can be time-zone specific and therefore change their meaning if the definition of time zones changes.</dd>
+<dt>Verification Service Indicator:</dt>
+<dd style="margin-left: 8">This IE provides a hint (typically consumed by a Relying Party) that enables the discovery of an appropriate Verification Service or Remote Attestation Service, e.g. a URL.</dd>
 </dl>
 <h1 id="rfc.section.3">
 <a href="#rfc.section.3">3.</a> <a href="#security-considerations" id="security-considerations">Security Considerations</a>
@@ -560,7 +582,7 @@ ul.toc li {
 <tr>
 <td class="reference"><b id="I-D.tschofenig-rats-psa-token">[I-D.tschofenig-rats-psa-token]</b></td>
 <td class="top">
-<a>Tschofenig, H.</a>, <a>Frost, S.</a>, <a>Brossard, M.</a> and <a>A. Shaw</a>, "<a href="https://tools.ietf.org/html/draft-tschofenig-rats-psa-token-01">Arm's Platform Security Architecture (PSA) Attestation Token</a>", Internet-Draft draft-tschofenig-rats-psa-token-01, April 2019.</td>
+<a>Tschofenig, H.</a>, <a>Frost, S.</a>, <a>Brossard, M.</a>, <a>Shaw, A.</a> and <a>T. Fossati</a>, "<a href="https://tools.ietf.org/html/draft-tschofenig-rats-psa-token-02">Arm's Platform Security Architecture (PSA) Attestation Token</a>", Internet-Draft draft-tschofenig-rats-psa-token-02, July 2019.</td>
 </tr>
 <tr>
 <td class="reference"><b id="RFC2119">[RFC2119]</b></td>
@@ -582,9 +604,14 @@ ul.toc li {
 <a>Birkholz, H.</a> and <a>M. Eckel</a>, "<a href="https://tools.ietf.org/html/draft-birkholz-rats-reference-interaction-model-00">Reference Interaction Model for Challenge-Response-based Remote Attestation</a>", Internet-Draft draft-birkholz-rats-reference-interaction-model-00, March 2019.</td>
 </tr>
 <tr>
+<td class="reference"><b id="I-D.ietf-sacm-terminology">[I-D.ietf-sacm-terminology]</b></td>
+<td class="top">
+<a>Birkholz, H.</a>, <a>Lu, J.</a>, <a>Strassner, J.</a>, <a>Cam-Winget, N.</a> and <a>A. Montville</a>, "<a href="https://tools.ietf.org/html/draft-ietf-sacm-terminology-16">Security Automation and Continuous Monitoring (SACM) Terminology</a>", Internet-Draft draft-ietf-sacm-terminology-16, December 2018.</td>
+</tr>
+<tr>
 <td class="reference"><b id="I-D.richardson-rats-usecases">[I-D.richardson-rats-usecases]</b></td>
 <td class="top">
-<a>Richardson, M.</a>, "<a href="https://tools.ietf.org/html/draft-richardson-rats-usecases-02">Use cases for Remote Attestation common encodings</a>", Internet-Draft draft-richardson-rats-usecases-02, June 2019.</td>
+<a>Richardson, M.</a>, <a>Wallace, C.</a> and <a>W. Pan</a>, "<a href="https://tools.ietf.org/html/draft-richardson-rats-usecases-03">Use cases for Remote Attestation common encodings</a>", Internet-Draft draft-richardson-rats-usecases-03, July 2019.</td>
 </tr>
 </tbody></table>
 <h1 id="rfc.authors"><a href="#rfc.authors">Authors' Addresses</a></h1>
