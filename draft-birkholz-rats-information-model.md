@@ -163,7 +163,7 @@ Authorization Challenge:
 : The input to an challenge-response protocol hand-shake.
 This IE can be Nonce, but also the output of a local attestation procedure.
 
-Reference {{-PSA-token}}
+: Reference {{-PSA-token}}
 
 Endorsement Document:
 
@@ -185,7 +185,7 @@ Measured Boot Characteristics:
 
 : [H, S, V]
 
-If every piece of software is measured by a root-of-trust for measuring during boot time and across staged computing contexts (e.g. UEFI, Bootloader, Kernel, Rich OS), associated information about how and in which operational states these measurements are conducted is vital to RATS.
+: If every piece of software is measured by a root-of-trust for measuring during boot time and across staged computing contexts (e.g. UEFI, Bootloader, Kernel, Rich OS), associated information about how and in which operational states these measurements are conducted is vital to RATS.
 This IE represents several states of a (composite) device with respect to measured boot (previously often called secure boot) including: "Secure Boot Enabled", "Debug Disabled", "Debug Disabled Since Boot", "Debug Permanent Disable", "Debug Full Permanent Disable".
 
 Nonce:
@@ -208,6 +208,8 @@ This is a specialization of System Component Identifier.
 : Reference {{-EAT}}
 
 Origination:
+
+: [P, S, V]]
 
 : An IE representing attestation provenance. Attestation Assertions or Attestation Evidence are produced by a specific source of information that is intended to be uniquely identifiable. The source of information is a distinguishable computing context (see {{-rats-arch}}) of a device or the sub-components of a composite device.
 
@@ -250,7 +252,7 @@ Software Component Identifier:
 : An IE representing one or more distinguishable Software Components {{-sacm-terms}} that were loaded and measured by an appropriate root-of-trust.
 The use of this IE typically requires the use of Measured Boot.
 
-Reference {{-PSA-token}}
+: Reference {{-PSA-token}}
 
 System Component Identifier:
 
@@ -261,13 +263,19 @@ The system component can be an "atomic" device (i.e. a composite device with onl
 
 Timestamp:
 
+: [P, S]
+
 : A generic information element that represents a certain point of time in the past. The level of confidence in the value of a timestamp is based on the trustworthiness of the source of time, which can be local or remote, a composite of multiple time sources to represent the state synchronization, as well as the precision and the accuracy of the source of time itself.
 
 : Timestamps can be time-zone specific and therefore change their meaning if the definition of time zones changes.
 
 Verification Service Indicator:
 
+: [P, S, V]
+
 : This IE provides a hint (typically consumed by a Relying Party) that enables the discovery of an appropriate Verification Service or Remote Attestation Service, e.g. a URL.
+
+: Reference {{-PSA-token}}
 
 #  Security Considerations
 
